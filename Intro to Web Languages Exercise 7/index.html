@@ -1,0 +1,45 @@
+<!--Evan Pulido-->
+<!--ITSC 3155-->
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <!--This asks the user to enter a price of an item-->
+        <input type="text" id="txt-price" placeholder="Enter the price of the item">
+        <!--This asks the user to enter a quantity of an item-->
+        <input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+        <!--This creates a button called 'Calculate' that allows the user to press it and it will do a calculation-->
+        <button id="btn-submit">Calculate</button>
+        <!--This displays to the user the total price of purchase.
+            For example an item is $5 and there is 3 of that item then the page will output $15 after user clicks the calculate button-->
+        <div id="output"></div>
+
+        <!--The first four lines in script take note of the values entered by the user and keep them in a sort of variable-->
+        <script>
+            var priceInput = document.getElementById('txt-price');
+            var quantityInput = document.getElementById('txt-quantity');
+            var submitBtn = document.getElementById('btn-submit');
+            var output = document.getElementById('output');
+
+        submitBtn.addEventListener('click', function () {
+            /*Two variables that hold the values that the user inputted, one for value and one for quantity */
+            var price = priceInput.value;
+            var quanity = quantityInput.value;
+            /*Adds the price to itself and the quantity to itself*/
+            price = +price;
+            quanity = +quanity;
+            /* If the number is not a number then the page will display an error*/
+            if (Number.isNaN(price) || Number.isNaN(quanity)) {
+                output.innerHTML = 'Invalid input';
+                return;
+            }
+            /*Multiplies the price by the quantity to get the price of items*/
+            var totalPrice = price * quanity;
+            /*This rounds the total price of items so that it only holds 2 decimals*/
+            totalPrice = Math.round(totalPrice * 100) / 100;
+            /*Displays to the user the price of the item, the quantity, and total cost*/
+            output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+        }); 
+        </script>
+    </body>
+</html>
